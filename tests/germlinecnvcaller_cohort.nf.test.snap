@@ -25,10 +25,10 @@
                     "gatk4": "4.5.0.0"
                 },
                 "PICARD_CREATESEQUENCEDICTIONARY": {
-                    "picard": "3.1.1"
+                    "picard": "3.3.0"
                 },
                 "SAMTOOLS_FAIDX": {
-                    "samtools": 1.2
+                    "samtools": 1.21
                 },
                 "Workflow": {
                     "nf-core/createpanelrefs": "v1.0dev"
@@ -184,9 +184,9 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.09.0"
+            "nf-test": "0.9.1",
+            "nextflow": "24.10.0"
         },
-        "timestamp": "2024-10-11T16:00:18.603619"
+        "timestamp": "2024-11-04T19:45:08.802551855"
     }
 }
