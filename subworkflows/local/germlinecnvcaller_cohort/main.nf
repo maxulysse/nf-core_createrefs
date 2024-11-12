@@ -2,6 +2,7 @@ include { GATK4_ANNOTATEINTERVALS                                       } from '
 include { GATK4_BEDTOINTERVALLIST as GATK4_BEDTOINTERVALLIST_TARGETS    } from '../../../modules/nf-core/gatk4/bedtointervallist/main'
 include { GATK4_BEDTOINTERVALLIST as GATK4_BEDTOINTERVALLIST_EXCLUDE    } from '../../../modules/nf-core/gatk4/bedtointervallist/main'
 include { GATK4_COLLECTREADCOUNTS                                       } from '../../../modules/nf-core/gatk4/collectreadcounts/main'
+include { GATK4_CREATESEQUENCEDICTIONARY                                } from '../../../modules/nf-core/gatk4/createsequencedictionary/main'
 include { GATK4_DETERMINEGERMLINECONTIGPLOIDY                           } from '../../../modules/nf-core/gatk4/determinegermlinecontigploidy/main'
 include { GATK4_FILTERINTERVALS                                         } from '../../../modules/nf-core/gatk4/filterintervals/main'
 include { GATK4_GERMLINECNVCALLER                                       } from '../../../modules/nf-core/gatk4/germlinecnvcaller/main'
@@ -9,7 +10,6 @@ include { GATK4_INDEXFEATUREFILE as GATK4_INDEXFEATUREFILE_MAPPABILITY  } from '
 include { GATK4_INDEXFEATUREFILE as GATK4_INDEXFEATUREFILE_SEGDUP       } from '../../../modules/nf-core/gatk4/indexfeaturefile/main'
 include { GATK4_INTERVALLISTTOOLS                                       } from '../../../modules/nf-core/gatk4/intervallisttools/main'
 include { GATK4_PREPROCESSINTERVALS                                     } from '../../../modules/nf-core/gatk4/preprocessintervals/main'
-include { PICARD_CREATESEQUENCEDICTIONARY                               } from '../../../modules/nf-core/picard/createsequencedictionary/main'
 include { SAMTOOLS_FAIDX                                                } from '../../../modules/nf-core/samtools/faidx/main'
 include { SAMTOOLS_INDEX                                                } from '../../../modules/nf-core/samtools/index/main'
 
@@ -36,14 +36,14 @@ workflow GERMLINECNVCALLER_COHORT {
         //
         SAMTOOLS_FAIDX ( ch_fasta, [[:],[]] )
 
-        PICARD_CREATESEQUENCEDICTIONARY ( ch_fasta )
+        GATK4_CREATESEQUENCEDICTIONARY ( ch_fasta )
 
         GATK4_INDEXFEATUREFILE_MAPPABILITY ( ch_mappable_regions )
 
         GATK4_INDEXFEATUREFILE_SEGDUP ( ch_segmental_duplications )
 
         ch_user_dict
-            .mix(PICARD_CREATESEQUENCEDICTIONARY.out.reference_dict)
+            .mix(GATK4_CREATESEQUENCEDICTIONARY.out.dict)
             .collect()
             .set { ch_dict }
 
@@ -168,7 +168,7 @@ workflow GERMLINECNVCALLER_COHORT {
         GATK4_GERMLINECNVCALLER ( ch_cnvcaller_in )
 
         ch_versions = ch_versions.mix(SAMTOOLS_FAIDX.out.versions)
-        ch_versions = ch_versions.mix(PICARD_CREATESEQUENCEDICTIONARY.out.versions)
+        ch_versions = ch_versions.mix(GATK4_CREATESEQUENCEDICTIONARY.out.versions)
         ch_versions = ch_versions.mix(SAMTOOLS_INDEX.out.versions.first())
         ch_versions = ch_versions.mix(GATK4_PREPROCESSINTERVALS.out.versions)
         ch_versions = ch_versions.mix(GATK4_BEDTOINTERVALLIST_TARGETS.out.versions)

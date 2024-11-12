@@ -84,7 +84,7 @@
                     "description": "When scattering with this argument, each of the resultant files will (ideally) have this amount of interval-counts.",
                     "default": 5000,
                     "fa_icon": "fas fa-sort-numeric-down",
-                    "help_text": "Used by GATK/Picards's IntervalListTools."
+                    "help_text": "Used by GATK's IntervalListTools."
                 },
                 "gcnv_segmental_duplications": {
                     "type": "string",

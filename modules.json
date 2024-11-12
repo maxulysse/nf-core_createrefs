@@ -30,6 +30,11 @@
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
                         "installed_by": ["modules"]
                     },
+                    "gatk4/createsequencedictionary": {
+                        "branch": "master",
+                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "installed_by": ["modules"]
+                    },
                     "gatk4/createsomaticpanelofnormals": {
                         "branch": "master",
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
@@ -78,11 +83,6 @@
                     "multiqc": {
                         "branch": "master",
                         "git_sha": "cf17ca47590cc578dfb47db1c2a44ef86f89976d",
-                        "installed_by": ["modules"]
-                    },
-                    "picard/createsequencedictionary": {
-                        "branch": "master",
-                        "git_sha": "49f4e50534fe4b64101e62ea41d5dc43b1324358",
                         "installed_by": ["modules"]
                     },
                     "samtools/faidx": {
