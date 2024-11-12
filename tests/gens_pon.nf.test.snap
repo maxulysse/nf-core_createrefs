@@ -9,11 +9,11 @@
                 "GATK4_CREATEREADCOUNTPANELOFNORMALS": {
                     "gatk4": "4.5.0.0"
                 },
-                "GATK4_PREPROCESSINTERVALS": {
+                "GATK4_CREATESEQUENCEDICTIONARY": {
                     "gatk4": "4.5.0.0"
                 },
-                "PICARD_CREATESEQUENCEDICTIONARY": {
-                    "picard": "3.3.0"
+                "GATK4_PREPROCESSINTERVALS": {
+                    "gatk4": "4.5.0.0"
                 },
                 "SAMTOOLS_FAIDX": {
                     "samtools": 1.21
@@ -56,6 +56,6 @@
             "nf-test": "0.9.1",
             "nextflow": "24.10.0"
         },
-        "timestamp": "2024-11-04T19:29:15.733933882"
+        "timestamp": "2024-11-12T10:09:54.111724435"
     }
 }
