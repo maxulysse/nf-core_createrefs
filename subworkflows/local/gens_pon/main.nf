@@ -1,7 +1,7 @@
 include { GATK4_COLLECTREADCOUNTS             } from '../../../modules/nf-core/gatk4/collectreadcounts/main'
 include { GATK4_CREATEREADCOUNTPANELOFNORMALS } from '../../../modules/nf-core/gatk4/createreadcountpanelofnormals/main'
+include { GATK4_CREATESEQUENCEDICTIONARY     } from '../../../modules/nf-core/gatk4/createsequencedictionary/main'
 include { GATK4_PREPROCESSINTERVALS           } from '../../../modules/nf-core/gatk4/preprocessintervals/main'
-include { PICARD_CREATESEQUENCEDICTIONARY     } from '../../../modules/nf-core/picard/createsequencedictionary/main'
 include { SAMTOOLS_FAIDX                      } from '../../../modules/nf-core/samtools/faidx/main'
 include { SAMTOOLS_INDEX                      } from '../../../modules/nf-core/samtools/index/main'
 
@@ -21,10 +21,10 @@ workflow GENS_PON {
         //
         SAMTOOLS_FAIDX ( ch_fasta, [[:],[]] )
 
-        PICARD_CREATESEQUENCEDICTIONARY ( ch_fasta )
+        GATK4_CREATESEQUENCEDICTIONARY ( ch_fasta )
 
         ch_user_dict
-            .mix(PICARD_CREATESEQUENCEDICTIONARY.out.reference_dict)
+            .mix(GATK4_CREATESEQUENCEDICTIONARY.out.dict)
             .collect()
             .set { ch_dict }
 
@@ -79,8 +79,8 @@ workflow GENS_PON {
 
         ch_versions = ch_versions.mix(GATK4_COLLECTREADCOUNTS.out.versions.first())
         ch_versions = ch_versions.mix(GATK4_CREATEREADCOUNTPANELOFNORMALS.out.versions.first())
+        ch_versions = ch_versions.mix(GATK4_CREATESEQUENCEDICTIONARY.out.versions)
         ch_versions = ch_versions.mix(GATK4_PREPROCESSINTERVALS.out.versions)
-        ch_versions = ch_versions.mix(PICARD_CREATESEQUENCEDICTIONARY.out.versions)
         ch_versions = ch_versions.mix(SAMTOOLS_FAIDX.out.versions)
         ch_versions = ch_versions.mix(SAMTOOLS_INDEX.out.versions.first())
 
