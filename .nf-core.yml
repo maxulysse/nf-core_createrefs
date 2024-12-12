@@ -1,4 +1,3 @@
-bump_version: null
 lint:
   actions_ci: false
   files_exist:
@@ -7,8 +6,7 @@ lint:
     - .gitattributes
     - .gitignore
   modules_config: false
-nf_core_version: 3.0.2
-org_path: null
+nf_core_version: 3.1.0
 repository_type: pipeline
 template:
   author: "@maxulysse"
@@ -19,6 +17,4 @@ template:
   name: createpanelrefs
   org: nf-core
   outdir: .
-  skip_features: null
   version: 1.0dev
-update: null
